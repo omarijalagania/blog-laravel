@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TodoController;
 use App\Models\Post;
 
 Route::get('/', function () {
@@ -14,7 +13,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/posts/{post}', function ($slug) {
+Route::get('/post/{slug}', function ($slug) {
 
 
     $post = Post::find($slug);
@@ -22,6 +21,12 @@ Route::get('/posts/{post}', function ($slug) {
     return view('post', [
         'post' => $post
     ]);
-})->where('post', '[</A-z_0-9>\-]+');
+});
 
-Route::get('/about', [TodoController::class, 'index'])->name('index');
+Route::get('/add-post', function () {
+    return view('add-post');
+});
+
+Route::post('/admin/posts', function () {
+    return 'lol';
+});
